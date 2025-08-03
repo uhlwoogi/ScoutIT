@@ -32,45 +32,6 @@ function Log {
 
 Log "Starting Tadco setup script..."
 
-# Step 1: Connect to WiFi (if not already done)
-if (-not (Select-String -Path $logFile -Pattern "WIFI_CONNECTED" -Quiet)) {
-    $SSID = "[UHL]WiFi"
-    $Password = "uhl4life"
-    Log "Creating WiFi profile for SSID: $SSID"
-    $profileXml = @"
-<?xml version="1.0"?>
-<WLANProfile xmlns="http://www.microsoft.com/networking/WLAN/profile/v1">
-    <name>$SSID</name>
-    <SSIDConfig>
-        <SSID>
-            <name>$SSID</name>
-        </SSID>
-    </SSIDConfig>
-    <connectionType>ESS</connectionType>
-    <connectionMode>auto</connectionMode>
-    <MSM>
-        <security>
-            <authEncryption>
-                <authentication>WPA2PSK</authentication>
-                <encryption>AES</encryption>
-                <useOneX>false</useOneX>
-            </authEncryption>
-            <sharedKey>
-                <keyType>passPhrase</keyType>
-                <protected>false</protected>
-                <keyMaterial>$Password</keyMaterial>
-            </sharedKey>
-        </security>
-    </MSM>
-</WLANProfile>
-"@
-    $profilePath = "$env:TEMP\WiFiProfile.xml"
-    $profileXml | Set-Content -Path $profilePath -Encoding UTF8
-    netsh wlan add profile filename="$profilePath" | Out-Null
-    netsh wlan connect name="$SSID" | Out-Null
-    Start-Sleep -Seconds 10
-    Log "WIFI_CONNECTED"
-}
 
 # Step 2: Set sleep timeout
 if (-not (Select-String -Path $logFile -Pattern "SLEEP_CONFIGURED" -Quiet)) {
