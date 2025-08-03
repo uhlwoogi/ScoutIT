@@ -178,3 +178,15 @@ if (-not (Select-String -Path $logFile -Pattern "DEBLOATER_RAN" -Quiet)) {
     Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -File `"$debloaterScript`"" -Verb RunAs
     Log "DEBLOATER_RAN"
 }
+
+
+try {
+    # your entire script is above this block
+    Log "Tadco setup script completed successfully."
+} catch {
+    Log "ERROR: $($_.Exception.Message)"
+    Write-Host "ERROR: $($_.Exception.Message)" -ForegroundColor Red
+} finally {
+    Write-Host "`nPress Enter to close..." -ForegroundColor Cyan
+    Read-Host
+}
