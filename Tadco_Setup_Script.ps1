@@ -1,8 +1,8 @@
 # Check if running as Administrator
-if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole("Administrator")) {
-    Write-Warning "You must run this script as Administrator!"
-    exit 1
-}
+#if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole("Administrator")) {
+#    Write-Warning "You must run this script as Administrator!"
+#    exit 1
+#}
 
 # Enable verbose output
 $VerbosePreference = "Continue"
