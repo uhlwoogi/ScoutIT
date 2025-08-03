@@ -1,3 +1,5 @@
+try {
+
 # Check if running as Administrator
 #if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole("Administrator")) {
 #    Write-Warning "You must run this script as Administrator!"
@@ -180,12 +182,14 @@ if (-not (Select-String -Path $logFile -Pattern "DEBLOATER_RAN" -Quiet)) {
 }
 
 
-try {
-    # your entire script is above this block
-    Log "Tadco setup script completed successfully."
+
+
+
+
 } catch {
-    Log "ERROR: $($_.Exception.Message)"
-    Write-Host "ERROR: $($_.Exception.Message)" -ForegroundColor Red
+    $msg = "ERROR: $($_.Exception.Message)"
+    Log $msg
+    Write-Host $msg -ForegroundColor Red
 } finally {
     Write-Host "`nPress Enter to close..." -ForegroundColor Cyan
     Read-Host
