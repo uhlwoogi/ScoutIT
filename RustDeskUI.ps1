@@ -1,6 +1,7 @@
 # ScoutIT Remote Support (RustDesk) - Uninstall Script
 $ErrorActionPreference = 'SilentlyContinue'
-#https://rustdesk.com/build/tasks/bcdaa04f-2146-43b9-9616-8f364c59f51e/files/scoutit-remotesupport.msi
+
+#https://rustdesk.com/build/tasks/483f98f9-8070-48d3-8303-3995118e55b2/files/scoutit-remotesupport.msi
 # ── Config ────────────────────────────────────────────────────────────────────
 $rustdeskInstallDir = 'C:\Program Files\ScoutIT-RemoteSupport'
 $rustdeskService    = 'ScoutIT-RemoteSupport'
